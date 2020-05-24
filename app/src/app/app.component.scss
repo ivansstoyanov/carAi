@@ -1,0 +1,258 @@
+
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+
+    .menu-item {
+        border: 1px solid blue;
+        width: 100%;
+        padding: 12px;
+        background: blue;
+        color: white;
+    }
+}
+
+.wrapper {
+    height: calc(100% - 50px);
+}
+
+.wrapper-view {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.top-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 50px;
+}
+
+.collapsible-menu {
+    padding: 0 10px;
+    transition: all 0.7s cubic-bezier(.85,.01,.38,1);
+    &.visible {
+      display: block;
+    }
+    &.hidden {
+      display: none;
+    }
+}
+
+
+.main-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex: 1;
+}
+
+.car-container {
+    position: absolute;
+    top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    img {
+        height: 150px;
+    }
+}
+
+.car-position {
+}
+.car-position-left {
+    transform: rotate(-20deg);
+}
+.car-position-right {
+    transform: rotate(20deg);
+}
+
+.car-color {
+    filter: contrast(40%) sepia(0%) hue-rotate(0deg);
+}
+
+.actions-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 180px;
+    padding: 0 10px 5px 10px;
+}
+
+
+
+.default-action-boundary {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    max-width: 100%;
+    border: solid #ccc 5px;
+    background-color: #999;
+    border-radius: 50%;
+}
+
+
+.stick-boundary {
+    
+}
+
+.stick-box {
+    width: 60px;
+    height: 60px;
+    cursor: move;
+    background: rgb(9,9,121);
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    padding: 10px;
+    box-shadow: 0 0 20px rgb(0, 71, 224);
+}
+
+.stick-box-fixed {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #666;
+    position: absolute;
+    top: 55px;
+    left: 55px;
+}
+
+
+
+
+i {
+    border: solid #666;
+    border-width: 0 6px 6px 0;
+    display: inline-block;
+    padding: 8px;
+    position: absolute;
+}
+
+.right {
+    top: 74px;
+    right: 16px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    top: 74px;
+    left: 16px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.up {
+    top: 16px;
+    left: 74px;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    bottom: 16px;
+    left: 74px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.active-top {
+    border-top-color: coral;
+}
+
+.active-bottom {
+    border-bottom-color: coral;
+}
+
+.active-left {
+    border-left-color: coral;
+}
+
+.active-right {
+    border-right-color: coral;
+}
+
+
+
+
+
+
+.action-buttons {
+    left: 10px;
+}
+
+.action-button {
+    position: absolute;
+    border: 0px solid blue;
+    padding: 13px;
+    background: blue;
+    color: white;
+    border-radius: 50%;
+}
+
+.action-button:active {
+    background: lightblue;
+}
+.action-button:focus {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+.action-button-right {
+    top: 60px;
+    right: 10px;
+}
+
+.action-button-left {
+    top: 60px;
+    left: 10px;
+}
+
+.action-button-top {
+    top: 10px;
+    left: 60px;
+}
+
+.action-button-bottom {
+    bottom: 10px;
+    left: 60px;
+}
+
+.buttons-boundary {
+   
+}
+
+
+
+
+
+
+
+
+
+.garden {
+    position: relative;
+    width : 200px;
+    height: 200px;
+    border: 5px solid #CCC;
+    border-radius: 10px;
+  }
+  
+  .ball {
+    position: absolute;
+    top   : 90px;
+    left  : 90px;
+    width : 20px;
+    height: 20px;
+    background: green;
+    border-radius: 100%;
+  }

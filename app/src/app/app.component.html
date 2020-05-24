@@ -1,0 +1,146 @@
+
+<nav class="menu">
+  <button class="menu-item" (click)="changeNav('joystick')">
+    <span class="material-icons">videogame_asset</span>
+      Joystick
+  </button>
+  <button class="menu-item" (click)="changeNav('motion')">
+    <span class="material-icons">screen_rotation</span>
+      Motion
+  </button>
+  <button class="menu-item" (click)="changeNav('gesture')">
+    <span class="material-icons">pan_tool</span>
+      Gesture
+  </button>
+  <button class="menu-item" (click)="changeNav('settings')">
+    <span class="material-icons">settings</span>
+      Settings
+  </button>
+</nav>
+
+<div class="wrapper">
+
+  <!-- JOYSTICK -->
+  <div class="wrapper-view" *ngIf="currentNav === 'joystick'">
+
+    <div class="car-container">
+      <img src="../assets/images/blank-car1.png" [style.height.px]="pageHeight - 150"
+        class="car-position car-color"
+        [ngStyle]="carStyle"
+        [ngClass]="{ 'car-position-left': currentStates.includes('active-left'), 'car-position-right': currentStates.includes('active-right') }">
+    </div>
+
+    <div class="top-view">
+      <div class="left-top-view">
+        <span class="material-icons" (click)="sideSettings = !sideSettings">tune</span>
+
+        <div class="collapsible-menu" [ngClass]="{ 'hidden': !sideSettings, 'visible': sideSettings }">
+          <div>Color:</div>
+          <mat-slider [min]="0" [max]="360" [thumbLabel]="true" (change)="colorChange($event)" (input)="colorChange($event)"></mat-slider>
+        </div>
+      </div>
+      <div class="right-top-view">top right1</div>
+    </div>
+
+    <div class="main-view">
+    </div>
+
+    <div class="actions-view">
+      <div class="stick default-action-container">
+        <div class="stick-boundary default-action-boundary" [ngClass]="{ 'active-top': currentStates.includes('active-top'), 'active-bottom': currentStates.includes('active-bottom'), 'active-left': currentStates.includes('active-left'), 'active-right': currentStates.includes('active-right') }">
+          <i class="arrow right"></i>
+          <i class="arrow left"></i>
+          <i class="arrow up"></i>
+          <i class="arrow down"></i>
+          <div class="stick-box-fixed"></div>
+          <div class="stick-box" cdkDragBoundary=".stick-boundary" cdkDrag [cdkDragFreeDragPosition]="dragPosition"
+            (cdkDragMoved)="dragMove($event)" (cdkDragStarted)="dragStart($event)"
+            (cdkDragReleased)="dragEnd($event)"
+            >
+            
+          </div>
+        </div>
+      </div>
+  
+      <div class="action-buttons default-action-container">
+        <div class="buttons-boundary default-action-boundary">
+          <button class="action-button action-button-right">
+            <span class="material-icons">remove_circle_outline</span>
+          </button>
+          <button class="action-button action-button-left">
+            <span class="material-icons">offline_bolt</span>
+          </button>
+          <button class="action-button action-button-top">
+            <span class="material-icons">highlight</span>
+          </button>
+          <button class="action-button action-button-bottom">
+            <span class="material-icons">open_in_browser</span>
+          </button>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- MOTION -->
+  <div class="wrapper-view" *ngIf="currentNav === 'motion'">
+    <div class="car-container">
+      <img src="../assets/images/blank-car1.png" [style.height.px]="pageHeight - 150"
+        class="car-position car-color"
+        [ngStyle]="carStyle"
+        [ngClass]="{ 'car-position-left': currentStates.includes('active-left'), 'car-position-right': currentStates.includes('active-right') }">
+    </div>
+
+    <div class="top-view">
+
+    </div>
+
+    <div class="main-view">
+      <!-- <img src="../assets/images/blank-car.png" title="saturate" class="car-position car-color"> -->
+
+    </div>
+
+    <div class="actions-view">
+      <div></div>
+  
+      <div class="action-buttons default-action-container">
+        <div class="buttons-boundary default-action-boundary">
+          <button class="action-button action-button-right">
+            <span class="material-icons">remove_circle_outline</span>
+          </button>
+          <button class="action-button action-button-left">
+            <span class="material-icons">offline_bolt</span>
+          </button>
+          <button class="action-button action-button-top">
+            <span class="material-icons">highlight</span>
+          </button>
+          <button class="action-button action-button-bottom">
+            <span class="material-icons">open_in_browser</span>
+          </button>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- SETTINGS -->
+  <div *ngIf="currentNav === 'settings'">
+    settings
+
+  </div>
+
+
+  <!-- GESTURE -->
+  <div *ngIf="currentNav === 'gesture'">
+    <button type="button" (click)="initTf()">Start</button>
+    <div><canvas id="canvas"></canvas></div>
+    <div id="label-container"></div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>
