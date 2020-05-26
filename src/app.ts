@@ -112,11 +112,6 @@ export class WatcherServer {
             turn: 'none'
         }
         this.io.on('new-navigation', (data: any) => {
-            data = {
-                device: '',
-                torque: 1.1,
-                turn: 'none' // 'none', 'left', 'right'
-            }
             if (defaultMovement.turn != data.turn) {
                 defaultMovement.turn = data.turn;
                 if (data.turn = 'none') {
@@ -130,16 +125,19 @@ export class WatcherServer {
 
             if (defaultMovement.torque != data.torque) {
                 defaultMovement.torque = data.torque;
-                if (data.torque <= 0) {
+                if (data.torque == 0) {
+                    TorqueService.backword(0);
+                }
+                else if (data.torque <= 0) {
                     const current = Math.pow(-data.torque, 2);
                     const squarePercent = current == 0 ? 0 : 100 * (current - 0) / (10000 - 0);
-                    const motorPercent = (255 - 70) * squarePercent / 100;
+                    const motorPercent = 70 + ((squarePercent * 185) / 100);
                     TorqueService.backword(+motorPercent.toFixed(0));
                 } else if (data.torque > 0) {
                     if (this.distanceCM > 20) { // TODO add option to change this
                         const current = Math.pow(data.torque, 2);
                         const squarePercent = 100 * (current - 0) / (10000 - 0);
-                        const motorPercent = (255 - 70) * squarePercent / 100;
+                        const motorPercent = 70 + ((squarePercent * 185) / 100);
                         TorqueService.forword(+motorPercent.toFixed(0));
                     }
                 }
@@ -191,18 +189,18 @@ export class WatcherServer {
             pullUpDown: Gpio.PUD_UP,
             alert: true
         });
-        
+
         let lastSecondEvents: any = [];
-        setTimeout(() => {
+        setInterval(() => {
             lastSecondEvents = lastSecondEvents.filter((e: any) => 
-                new Date().setSeconds(new Date().getSeconds() - 1) > e)
+                new Date().setSeconds(new Date().getSeconds() - 1) < e)
         }, 2000);
         button.glitchFilter(1);
         button.on('alert', (level: any, tick: any) => {
             if (level === 0) {
-                lastSecondEvents.push(new Date().getMilliseconds())
+                lastSecondEvents.push(new Date().getTime())
                 lastSecondEvents = lastSecondEvents.filter((e: any) => 
-                    new Date().setSeconds(new Date().getSeconds() - 1) > e)
+                    new Date().setSeconds(new Date().getSeconds() - 1) < e)
             }
         });
 

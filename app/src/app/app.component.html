@@ -24,7 +24,8 @@
   <div class="wrapper-view" *ngIf="currentNav === 'joystick'">
 
     <div class="car-container">
-      <img src="../assets/images/blank-car1.png" [style.height.px]="pageHeight - 150"
+      <app-getting-started *ngIf="!loaded" [text]="loadedText"></app-getting-started>
+      <img *ngIf="loaded" src="../assets/images/blank-car1.png"
         class="car-position car-color"
         [ngStyle]="carStyle"
         [ngClass]="{ 'car-position-left': currentStates.includes('active-left'), 'car-position-right': currentStates.includes('active-right') }">
@@ -38,8 +39,89 @@
           <div>Color:</div>
           <mat-slider [min]="0" [max]="360" [thumbLabel]="true" (change)="colorChange($event)" (input)="colorChange($event)"></mat-slider>
         </div>
+
+        <div class="stopwatch">
+          <div class="number" style="left:170px" [ngClass]="{ 'num0': elapsedTime[0] == 0,'num1': elapsedTime[0] == 1,'num2': elapsedTime[0] == 2,'num3': elapsedTime[0] == 3,'num4': elapsedTime[0] == 4,'num5': elapsedTime[0] == 5,'num6': elapsedTime[0] == 6,'num7': elapsedTime[0] == 7,'num8': elapsedTime[0] == 8,'num9': elapsedTime[0] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:135px;margin-top:-60px" [ngClass]="{ 'num0': elapsedTime[1] == 0,'num1': elapsedTime[1] == 1,'num2': elapsedTime[1] == 2,'num3': elapsedTime[1] == 3,'num4': elapsedTime[1] == 4,'num5': elapsedTime[1] == 5,'num6': elapsedTime[1] == 6,'num7': elapsedTime[1] == 7,'num8': elapsedTime[1] == 8,'num9': elapsedTime[1] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:100px;margin-top:-60px" [ngClass]="{ 'num0': elapsedTime[2] == 0,'num1': elapsedTime[2] == 1,'num2': elapsedTime[2] == 2,'num3': elapsedTime[2] == 3,'num4': elapsedTime[2] == 4,'num5': elapsedTime[2] == 5,'num6': elapsedTime[2] == 6,'num7': elapsedTime[2] == 7,'num8': elapsedTime[2] == 8,'num9': elapsedTime[2] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:65px;margin-top:-60px" [ngClass]="{ 'num0': elapsedTime[3] == 0,'num1': elapsedTime[3] == 1,'num2': elapsedTime[3] == 2,'num3': elapsedTime[3] == 3,'num4': elapsedTime[3] == 4,'num5': elapsedTime[3] == 5,'num6': elapsedTime[3] == 6,'num7': elapsedTime[3] == 7,'num8': elapsedTime[3] == 8,'num9': elapsedTime[3] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:30px;margin-top:-60px" [ngClass]="{ 'num0': elapsedTime[4] == 0,'num1': elapsedTime[4] == 1,'num2': elapsedTime[4] == 2,'num3': elapsedTime[4] == 3,'num4': elapsedTime[4] == 4,'num5': elapsedTime[4] == 5,'num6': elapsedTime[4] == 6,'num7': elapsedTime[4] == 7,'num8': elapsedTime[4] == 8,'num9': elapsedTime[4] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+        </div>
+
+        <div class="distance">
+          <div class="number" style="left:100px" [ngClass]="{ 'num0': distance[0] == 0,'num1': distance[0] == 1,'num2': distance[0] == 2,'num3': distance[0] == 3,'num4': distance[0] == 4,'num5': distance[0] == 5,'num6': distance[0] == 6,'num7': distance[0] == 7,'num8': distance[0] == 8,'num9': distance[0] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:65px;margin-top:-60px" [ngClass]="{ 'num0': distance[1] == 0,'num1': distance[1] == 1,'num2': distance[1] == 2,'num3': distance[1] == 3,'num4': distance[1] == 4,'num5': distance[1] == 5,'num6': distance[1] == 6,'num7': distance[1] == 7,'num8': distance[1] == 8,'num9': distance[1] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+          <div class="number" style="left:30px;margin-top:-60px" [ngClass]="{ 'num0': distance[2] == 0,'num1': distance[2] == 1,'num2': distance[2] == 2,'num3': distance[2] == 3,'num4': distance[2] == 4,'num5': distance[2] == 5,'num6': distance[2] == 6,'num7': distance[2] == 7,'num8': distance[2] == 8,'num9': distance[2] == 9 }">
+            <div class="section top"></div>
+            <div class="section top-right"></div>
+            <div class="section top-left"></div>
+            <div class="middle"></div>
+            <div class="section bottom-right"></div>   
+            <div class="section bottom-left"></div>
+            <div class="section bottom"></div>
+          </div>
+        </div>
+
       </div>
-      <div class="right-top-view">top right1</div>
+      <div class="right-top-view">
+        <canvas id="speed-canvas"></canvas>
+      </div>
     </div>
 
     <div class="main-view">

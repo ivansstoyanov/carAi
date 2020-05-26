@@ -8,6 +8,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { GettingStartedComponent } from '../app/components/getting-started/getting-started.component';
+
 const localIp = localStorage.getItem(`carai-localip`);
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const socketConfig: SocketIoConfig = {
@@ -18,7 +20,8 @@ const socketConfig: SocketIoConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GettingStartedComponent
   ],
   imports: [
     BrowserModule,
